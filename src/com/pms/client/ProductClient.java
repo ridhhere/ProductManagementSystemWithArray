@@ -18,11 +18,24 @@ public class ProductClient {
 		switch(choice) {
 			case 1:
 				ProductDetails details= new ProductDetails();
-				details.productMenu();
+				System.out.println("Enter Username : ");
+				String user=sc.next();
+				System.out.println("Enter Password : ");
+				String pass=sc.next();
+				//check username & password
+				if(user.equals("Admin")&&pass.equals("Admin123")) {
+					System.out.println("Login Sucessful");
+					details.productMenu();
+				}
+				else {
+					System.out.println("Incorrect Password!!");
+				}
 				break;
 			case 2:
 				System.exit(0);
 				System.out.println("Thanks for Using the App");
+			default:
+				System.out.println("Choose 1 to 2 Between");
 		}
 	}
 
