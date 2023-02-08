@@ -8,17 +8,19 @@ import com.pms.pojo.Product;
 
 public class ProductDetails {
 
-	Scanner sc=new Scanner(System.in);
-	ProductDaoImpl daoImpl=new ProductDaoImpl();
+	Scanner sc = new Scanner(System.in);
+	ProductDaoImpl daoImpl = new ProductDaoImpl();
+
 	public void productMenu() {
 		while (true) {
-			System.out.println("--------------------------------------------");
-			System.out.println("           1)Add Product                    ");
-			System.out.println("           2)ViewAll Product                    ");
-			System.out.println("           3)View Product                    ");
-			System.out.println("           4)Back                    ");
-
-			System.out.println("--------------------------------------------");
+			System.out.println("----------------------------------------------");
+			System.out.println("-           1)Add Product                    -");
+			System.out.println("-           2)ViewAll Product                -");
+			System.out.println("-           3)View Product                   -");
+			System.out.println("-           4)Update Product                 -");
+			System.out.println("-           5)Delete Product                 -");
+			System.out.println("-           6)Back                           -");
+			System.out.println("----------------------------------------------");
 			System.out.println("Enter The Choice");
 			int choice = sc.nextInt();
 			switch (choice) {
@@ -34,7 +36,8 @@ public class ProductDetails {
 					if (viewAllProducts != null) {
 						for (Product p : viewAllProducts) {
 							if (p != null)
-								System.out.println("\t"+p.getPid() + "\t" + p.getPname() + "\t" + p.getPrice() + "\t" + p.getQty());
+								System.out.println(
+										p.getPid() + "\t" + p.getPname() + "\t" + p.getPrice() + "\t" + p.getQty());
 						}
 
 					} // end of if
@@ -58,16 +61,29 @@ public class ProductDetails {
 					productMenu();
 					break;
 				case 4:
-					ProductClient.main(null);
+					System.out.println("Enter Product Id");
+					daoImpl.updateProduct(sc.nextInt());
+					productMenu();
+
+					break;
 				case 5:
-					ProductClient.main(null);
+					System.out.println("Enter Product Id");
+					boolean flag = daoImpl.deleteProduct(sc.nextInt());
+					if(flag)
+						System.out.println("Given Id is Deleted SuccessFully");
+					else
+						System.out.println("Given Id is Not Exist");
+					productMenu();
+					
+					
 				case 6:
 					ProductClient.main(null);
 				default:
-					System.out.println("Choose 1 to 6 Between");
+					System.out.println("Choose 1 to 4 Between");
 			}
 
 		} // end of while
 
 	}// end of menu
+
 }

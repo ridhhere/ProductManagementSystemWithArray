@@ -50,7 +50,7 @@ public class ProductDaoImpl {
 		return null;
 	}//end of view Product
 	
-	boolean delete(int pid) {
+	public boolean deleteProduct(int pid) {
 		boolean flag = false;
 		int k = 0;
 		if (ProductInfo != null) {
@@ -68,39 +68,48 @@ public class ProductDaoImpl {
 		return flag;
 	}
 	
-	void updateEmployee(int pid) {
+	public void updateProduct(int pid) {
+		int m = 1;
+		int k = 0;
 		if (ProductInfo != null) {
 			for (Product pro : ProductInfo) {
-				if (pro.getPid() == pid) {
-					System.out.println("Do You Want To Update 1) Pname 2) Qty 3)Price");
-					System.out.println("Enter The Choice");
-					int choice = sc.nextInt();
-					switch (choice) {
-					case 1:
-						System.out.println("Enter The Product Name");
-						String pname = sc.next();
-						pro.setPname(pname);// update product
-						System.out.println("Product Name Update Successfully");
-						break;
-					case 2:
-						System.out.println("Enter The Product Quantity");
-						int qty = sc.nextInt();
-						pro.setQty(qty);// update product
-						System.out.println("Product Qty Update Successfully");
-						break;
-					case 3:
-						System.out.println("Enter The Product Price");
-						int price = sc.nextInt();
-						pro.setPrice(price);// update product
-						System.out.println("Product Price Update Successfully");
-						break;
-					default:
-						System.out.println("Choose Between 1 to 3");
+				if (pro != null) {
+					if (pro.getPid() == pid) {
+						++k;
+						while (m == 1) {
+							System.out.println("Do You Want To Update 1) Pname 2) Qty 3)Price");
+							System.out.println("Enter The Choice");
+							int choice = sc.nextInt();
+							switch (choice) {
+							case 1:
+								System.out.println("Enter The Product Name");
+								String pname = sc.next();
+								pro.setPname(pname);// update product
+								System.out.println("Product Name Update Successfully");
+								break;
+							case 2:
+								System.out.println("Enter The Product Quantity");
+								int qty = sc.nextInt();
+								pro.setQty(qty);// update product
+								System.out.println("Product Qty Update Successfully");
+								break;
+							case 3:
+								System.out.println("Enter The Product Price");
+								int price = sc.nextInt();
+								pro.setPrice(price);// update product
+								System.out.println("Product Price Update Successfully");
+								break;
+							default:
+								System.out.println("Choose Between 1 to 3");
 
-					}
+							}// end of switch
+						} // while loop
+						System.out.println("Do You Want To Continue To Upate 1) Yes 2) No");
+						m = sc.nextInt();
+					} // end if
 				}//end if
-			} //end for
-		}//end if
+			} // end for
+		} // end if
 	}
 
 }
